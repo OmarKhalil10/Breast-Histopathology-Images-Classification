@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/55baaca549.js" crossorigin="anonymous"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="shortcut icon" type="image/png" href="/static/Images/layer.png">
+  <title>HomDoc</title>
+</head>
+
+<body>
+  <div>
+    <!--nav bar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-info ">
+      <a id="logo-color" class="navbar-brand logo fs-3 mx-3 text-white" href="#">HomDoc</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto pr-3 mr-5">
+          <li class="nav-item px-3">
+            <a class="nav-link" id="nav-color" href="#">Home</a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link blue" id="nav-color" href="#des">About</a>
+          </li>
+          <li class="nav-item px-3">
+            <a id="nav-color" class="nav-link" href="mailto:joodintjr@gmail">Contacts</a>
+          </li>
+          <li class="nav-item px-3 ">
+            <a id="nav-color" class="nav-link" href="#services">Help</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 title">
+            <div class="hh">
+              <h1 id="h1">HomDoc</h1>
+            </div>
+            <div class="pp"></div>
+            <h6 id="h6">The best Doctors and spicilist virtual assistant that help all doctors to dignose all complex
+              MRI specifecally the hardest ones with all scales </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="main">
+  </section>
+
+  <div class="about">
+    <section id="des" class="des container "><!--about us section-->
+      <div class="section-title">
+        <h2><b>About Us</b></h2>
+        <img src="/static/Images/dreamstime_m_34105875-what-is-npi-number-1500x983-980x642.jpg" class="img-fluid w-100 postion-relative"
+          alt="Responsive image">
+      </div>
+      <hr class="mx-auto" width="15%" color="#55E1F8" size="5px"/>
+      <div class="content">
+        <p>we're a technical team that focuses on solve the medical health problems and offer solution to help
+          diagnosing the medical conditions and our best project is the MRI dig that help doctors in diagnosing the MRI
+        </p>
+      </div>
+    </section>
+  </div><!--end of about us section-->
+
+
+  <!--Avatar-->
+  <div class="Help">
+    <section id="des" class="des container "><!--about us section-->
+      <div class="section-title">
+        <h2><b>Diagnose</b></h2>
+      </div>
+      <hr class="mx-auto" width="15%" color="#55E1F8" size="5px"/>
+      <div class="content">
+        <p>Upload Your MRI Image and get you results immediately</p>
+      </div>
+    </section>
+    <div class="d-flex justify-content-center mb-4">
+      <img src="/static/Images/layer.png" class="rounded-circle" alt="example placeholder" style="width: 200px;"/>
+    </div>
+    <br>
+    <br>
+
+    <!--Prediction Section-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="home_left_img">
+            <div class="container">
+              <form class="form-inline" enctype="multipart/form-data" action="/predict" method="POST">
+                <label><b>Image: &nbsp;&nbsp; </b></label>
+                <input type="file" class="form-control" name="image">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="banner_content">
+            {% if results %}
+            <div class="col-sm-4">
+              <img style="height: 90%; width: 100%;" src="{{results.image}}">
+            </div>
+            <div class="col-sm-8">
+              <p class="text">We think that is: </p>
+              <p><b> {{results.prediction}} </b> </p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--end of prediction section-->
+
+
+    <!-- footer -->
+    <div class="footer-top fot mt-5">
+      <div class="container">
+        <div class="row">
+
+          <div class="fon col-lg-3 col-md-6 footer-contact mt-4">
+            <h3>HomDoc</h3>
+            <p>
+              128st 6 october<br>
+              Cairo, Egypt<br>
+              Egypt<br><br>
+              <strong>Phone:</strong> +2 01275405471<br>
+              <strong>Email:</strong> joodintjr@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="fon col-lg-3 col-md-6 footer-links mt-4">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="fa-solid fa-chevron-right"></i><a href="#">Home</a></li><br>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">About us</a></li><br>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Help</a></li><br>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Contact us</a></li><br>
+            </ul>
+          </div>
+
+          <div class="fon col-lg-3 col-md-6 footer-links mt-4">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Diagnosing</a></li><br>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Advicing </a></li><br>
+              <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Following</a></li><br>
+            </ul>
+          </div>
+
+          <div class="fon col-lg-3 col-md-6 footer-links mt-4">
+            <h4>Our Social Networks</h4>
+            <p>if you want to contact ask and inquire about any services and help please contact us</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="fa-brands fa-twitter fa-2xl"></i></a>
+              <a href="#" class="facebook"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+              <a href="#" class="instagram"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              <a href="#" class="google-plus"><i class="fa-brands fa-skype fa-2xl"></i></a>
+              <a href="#" class="linkedin"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

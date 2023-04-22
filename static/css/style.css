@@ -1,0 +1,100 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#nav-color{
+    color: white;
+    padding: 0,3%;
+}
+.title{
+    padding-top: 15%;
+    color: black;
+
+}
+.hh{
+    margin-bottom: 5%;
+    
+}
+#h1{
+    font-size: 80px;
+}
+#h6{
+    font-size: 25px;
+}
+
+h1,h6{
+    margin-left: 20%;
+}
+
+
+#DES{
+    color: black;
+    
+}
+#des{
+    text-align: center;
+}
+.content{
+    font-size: 20px;
+}
+
+
+.about{
+    /* margin-top: 20%; */
+    padding: 5% 0%;
+    background-color: aliceblue;
+}
+.Help{
+
+    padding: 2% 0%;
+    background-color: #F8F8FF;
+}
+.header {
+    background-image: url(..//Images/Blog-cover-photos-900-x-400-px-10.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    display: block;
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+
+}
+
+img {
+    position: relative;
+}
+hr{
+    background-color: aqua;
+}
+
+.fot{
+    background-color: #6698ef;  
+    margin-bottom: 0%;
+  }
+  .footer-links li a{
+    color: #fff;
+    display: inline;
+    padding-left: 3px;
+    text-decoration: none;
+  }
+  .footer-links li a:hover{
+    color: aqua;
+  }
+  .footer-links ul {
+    padding: 0px;
+    list-style-type: none;
+  }
+  .fa-chevron-right{
+    color: #209dd8;
+  }
+  .fa-brands{
+    color: #209dd8;
+    padding: 10px 10px;
+  }
+  .fa-brands:hover{
+    color: #4b86ec ;
+  }
+  .fon h3,h4{
+    color: #87b2fd;
+  }

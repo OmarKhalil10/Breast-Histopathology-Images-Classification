@@ -9,6 +9,7 @@ from tensorflow.keras.models import Sequential, model_from_json
 from tensorflow.keras.optimizers import Adam
 from flask import Flask, send_from_directory
 from keras.preprocessing import image
+from PIL import Image
 
 
 # configure allowed extensions
@@ -52,51 +53,30 @@ def create_app(test_config=None):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 
-            # load json and create model
-            json_file = open('_model_.json', 'r')
-            loaded_model_json = json_file.read()
-            json_file.close()
-            model = model_from_json(loaded_model_json)
-            # load weights into new model
-            model.load_weights("_model_.h5")
-            print("Loaded model from disk")
+            model =  tf.keras.models.load_model('.\\model.h5')
             
-            # evaluate loaded model on test data
-            opt = Adam(lr=0.00001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
-            model.compile(optimizer=opt,loss='binary_crossentropy',metrics=['acc'])
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            img = image.load_img(path, target_size=(224, 224))
+            expand_input = np.expand_dims(img,axis=0)
+            input_data = np.array(expand_input)
+            input_data = input_data/255
+
+            pred = model.predict(input_data)
+
+            print(pred)
+
+            if pred >= 0.5:
+                prediction = "Cancer"
+            else:
+                prediction = "No Cancer"
             
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            img = image.load_img(image_path, target_size=(100,100))
-            img=np.array(img)
-            print('po array = {}'.format(img.shape))
-            img = np.true_divide(img, 255)
-            img = img.reshape(-1,100, 100,3)
-            print(type(img), img.shape)
-            predictions = model.predict(img)
-            print(model)
-            predictions_c = model.predict(img)
-            print(predictions, predictions_c)
-            model.predict(img)
-            print(predictions_c)
-
-            classes = {'TRAIN': ['Non Malignant (No Cancer)','Malignant'],
-                    'TEST': ['Non Malignant (No Cancer)','Malignant']}
-
-            # get the index of the class with the highest prediction probability
-            predicted_class_idx = predictions_c.argmax()
-
-            # use the index to get the corresponding class label from the 'TRAIN' category
-            predicted_class = classes['TRAIN'][predicted_class_idx]
-            
-            prediction = predicted_class.lower()
-
             result_dic = {
-                'image' : image_path,
+                'image' : path,
                 'prediction' : prediction
             }
+
         return render_template('pages/index.html', results = result_dic)
 
-                
     @app.route('/uploads/<filename>')
     def uploaded_file(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
